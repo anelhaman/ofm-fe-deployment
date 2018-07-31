@@ -1,0 +1,23 @@
+
+	kubectl create -f ofm_fe_deployment.yml --record 
+  kubectl create -f ofm_fe_svc.yml --record 
+
+	kubectl get deployment
+  kubectl describe deployment/ofm_fe
+  kubectl get svc
+	kubectl get pods --show-labels
+
+  kubectl set image deployment/ofm_fe ofm_fe=prch12/alpineweb:web2 --record
+	kubectl rollout status deployment/ofm_fe
+
+	kubectl set image deployment/ofm_fe ofm_fe=prch12/alpineweb:web3 --record
+	kubectl rollout status deployment/ofm_fe
+
+
+	kubectl rollout history deployment/ofm_fe
+
+	kubectl rollout undo deployment/ofm_fe --to-revision=3
+	kubectl rollout status deployment/ofm_fe
+
+	kubectl delete -f ofm_fe_deployment.yml 
+	kubectl delete -f ofm_fe_svc.yml 
